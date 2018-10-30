@@ -48,16 +48,14 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 /**
- * SASLAuthentication is responsible for returning the available SASL mechanisms to use and for
- * actually performing the SASL authentication.<p>
+ * SASLAuthentication负责返回可用的SASL机制来使用和实际执行SASL身份验证<p>
  *
- * The list of available SASL mechanisms is determined by:
+ * 可用的SASL机制列表由以下决定:
  * <ol>
- *      <li>The type of {@link org.jivesoftware.openfire.user.UserProvider} being used since
- *      some SASL mechanisms require the server to be able to retrieve user passwords</li>
- *      <li>Whether anonymous logins are enabled or not.</li>
- *      <li>Whether shared secret authentication is enabled or not.</li>
- *      <li>Whether the underlying connection has been secured or not.</li>
+ *      <li>使用的 {@link org.jivesoftware.openfire.user.UserProvider}的类型， 由于一些SASL机制要求服务器能够检索用户密</li>
+ *      <li>是否启用匿名登录。</li>
+ *      <li>是否启用共享秘密身份验证。</li>
+ *      <li>基础连接是否安全。</li>
  * </ol>
  *
  * @author Hao Chen
@@ -78,9 +76,11 @@ public class SASLAuthentication {
     static
     {
         // Add (proprietary) Providers of SASL implementation to the Java security context.
+    	// 将SASL实现的(专有的)提供者添加到Java安全上下文。
         Security.addProvider( new org.jivesoftware.openfire.sasl.SaslProvider() );
 
         // Convert XML based provider setup to Database based
+        // 将基于XML的提供者设置转换为基于数据库的设置
         JiveGlobals.migrateProperty("sasl.mechs");
         JiveGlobals.migrateProperty("sasl.gssapi.debug");
         JiveGlobals.migrateProperty("sasl.gssapi.config");
